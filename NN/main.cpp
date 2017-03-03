@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
     DataPreparation data;
     int layers[3] = {784,30,10};
     NN nn(&layers[0],sizeof(layers)/sizeof(int));
-    nn.sgd(&data,30,10,3.0);
+    nn.sgd(&data,20,10,3.0);
     
     //cout << nn.length_of_layers << endl;
     //cout << nn.layers[0] << " " << nn.layers[1] << " " << nn.layers[2] << endl;

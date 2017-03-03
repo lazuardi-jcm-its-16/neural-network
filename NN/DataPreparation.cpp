@@ -17,7 +17,8 @@ DataPreparation::DataPreparation() {
     char * buffer_train_images = load_file("train-images.idx3-ubyte");
     if(decode_to_int32(buffer_train_images,0,3) == 2051) {
         //int number_of_items = decode_to_int32(buffer_train_images,4,7);
-        number_of_train_data = 60000;
+        //number_of_train_data = 60000;
+        number_of_train_data = 250;
         int rows = decode_to_int32(buffer_train_images,8,11);
         int columns = decode_to_int32(buffer_train_images,12,15);
         
@@ -42,7 +43,8 @@ DataPreparation::DataPreparation() {
             
     char * buffer_train_images_labels = load_file("train-labels.idx1-ubyte");
     if(decode_to_int32(buffer_train_images_labels,0,3) == 2049) {
-        number_of_train_data = 60000;
+        //number_of_train_data = 60000;
+        number_of_train_data = 250;
         train_labels = new Mat[number_of_train_data];
         int idx = 8;
         for(int i=0; i<number_of_train_data; i++) {
@@ -56,7 +58,8 @@ DataPreparation::DataPreparation() {
     char * buffer_test_images = load_file("t10k-images.idx3-ubyte");
     if(decode_to_int32(buffer_test_images,0,3) == 2051) {
         //int number_of_items = decode_to_int32(buffer_test_images,4,7);
-        number_of_test_data = 10000;
+        //number_of_test_data = 10000;
+        number_of_test_data = 10;
         int rows = decode_to_int32(buffer_test_images,8,11);
         int columns = decode_to_int32(buffer_test_images,12,15);
         
@@ -80,7 +83,8 @@ DataPreparation::DataPreparation() {
     
     char * buffer_test_images_labels = load_file("t10k-labels.idx1-ubyte");
     if(decode_to_int32(buffer_test_images_labels,0,3) == 2049) {
-        number_of_test_data = 10000;
+        //number_of_test_data = 10000;
+        number_of_test_data = 10;
         test_labels = new Mat[number_of_test_data];
         int idx = 8;
         for(int i=0; i<number_of_test_data; i++) {

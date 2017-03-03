@@ -21,6 +21,7 @@ NN::NN(int * layers, int length_of_layers) {
     biases = new Mat[length_of_layers-1];
     weights = new Mat[length_of_layers-1];
     initialization_biases_and_weights(this->biases, this->weights, true);
+    
 }
 
 NN::NN(const NN& orig) {
@@ -56,6 +57,7 @@ void NN::sgd(DataPreparation *data, int epochs, int mini_batch_size, double lear
     
     Mat* mini_batch_train = new Mat[mini_batch_size];
     Mat* mini_batch_train_label = new Mat[mini_batch_size];
+    
     for(int i=0; i<epochs; ++i) {
         for(int j=0; j<n/mini_batch_size; ++j) {
             for(int z=0; z<mini_batch_size; ++z) {
@@ -66,8 +68,8 @@ void NN::sgd(DataPreparation *data, int epochs, int mini_batch_size, double lear
         }
         
         //evaluate
-        //int n_eval = evaluate(data);
-        //cout << "Epoch " << i << ": " << n_eval << "/" << n_test << endl;
+        int n_eval = evaluate(data);
+        cout << "Epoch " << i << ": " << n_eval << "/" << n_test << endl;
     }
     
 }
@@ -80,30 +82,32 @@ void NN::update_mini_batch(Mat * mini_batch_train, Mat * mini_batch_train_label,
     for(int i=0; i<mini_batch_size; ++i) {
         backprop(mini_batch_train[i],mini_batch_train_label[i]);
         
-        /*
         for(int j=0; j<length_of_layers-1; ++j) {
             nabla_biases[j] = nabla_biases[j] + delta_nabla.nabla_biases[j];
             nabla_weights[j] = nabla_weights[j] + delta_nabla.nabla_weights[j];
-        }*/
+        }
     }
-    /*
+    
     for(int i=0; i<length_of_layers-1; ++i) {
-        weights[i] = (weights[i] - (learning_rate/mini_batch_size)) * nabla_weights[i];
-        biases[i] = (biases[i] -  (learning_rate/mini_batch_size)) * nabla_biases[i];
-    }*/
+        weights[i] = weights[i] - (learning_rate/mini_batch_size) * nabla_weights[i];
+        biases[i] = biases[i] -  (learning_rate/mini_batch_size) * nabla_biases[i];
+    }
 }
 
 void NN::backprop(Mat train_images, Mat train_labels) {
-    Mat * nabla_biases = new Mat[length_of_layers-1];
-    Mat * nabla_weights = new Mat[length_of_layers-1];
+    Mat *nabla_biases = new Mat[length_of_layers-1];
+    Mat *nabla_weights = new Mat[length_of_layers-1];
     initialization_biases_and_weights(nabla_biases, nabla_weights, false);
     
-    // feed forward
+    // convert unsigned char to double
     Mat train_images_double(train_images.rows*train_images.cols,1, CV_64FC1, Scalar::all(0));
     train_images.convertTo(train_images_double,CV_64FC1);
+    Mat train_labels_double(train_labels.rows*train_labels.cols,1, CV_64FC1, Scalar::all(0));
+    train_labels.convertTo(train_labels_double,CV_64FC1);
     
+    // feed forward
     Mat activation = train_images_double.clone();
-    Mat * activations = new Mat[length_of_layers-1];
+    Mat *activations = new Mat[length_of_layers];
     activations[0] = activation;
     Mat * zs = new Mat[length_of_layers-1];
         
@@ -119,23 +123,25 @@ void NN::backprop(Mat train_images, Mat train_labels) {
     }
     
     // backward pass
-    Mat delta = cost_derivative(activations[(length_of_layers-1)-1],train_labels).mul(Sigmoid::ComputePrime(zs[(length_of_layers-1)-1]));
+    Mat delta = cost_derivative(activations[length_of_layers-1],train_labels_double).mul(Sigmoid::ComputePrime(zs[(length_of_layers-1)-1]));
     nabla_biases[(length_of_layers-1)-1] = delta;
     
-    Mat act = activations[(length_of_layers-1)-2];
+    Mat act = activations[length_of_layers-2];
     Mat act_transpose(act.cols,act.rows,act.type());
     transpose(act,act_transpose);
     nabla_weights[(length_of_layers-1)-1] = delta * act_transpose;
     
     for(int l=2; l<length_of_layers; ++l) {
-        Mat z = zs[(length_of_layers-1)-l];
-        Mat sp = Sigmoid::ComputePrime(z);
         Mat delta_temp = delta.clone();
+        Mat weight = weights[(length_of_layers-1)-l+1].clone();
+        Mat weight_transpose(weight.cols,weight.rows,weight.type());
+        transpose(weight,weight_transpose);
+        
         delta.deallocate();
-        Mat delta = (weights[(length_of_layers-1)-l+1] * delta_temp).mul(sp);
+        delta = (weight_transpose * delta_temp).mul(Sigmoid::ComputePrime(zs[(length_of_layers-1)-l]));
         nabla_biases[(length_of_layers-1)-l] = delta;
         
-        Mat act = activations[(length_of_layers-1)-l-1];
+        Mat act = activations[length_of_layers-l-1];
         Mat act_transpose(act.cols,act.rows,act.type());
         transpose(act,act_transpose);
         nabla_weights[(length_of_layers-1)-l] = delta * act_transpose;
@@ -150,10 +156,15 @@ Mat NN::cost_derivative(Mat output_activations, Mat y_target) {
 }
 
 int NN::evaluate(DataPreparation* data) {
+    Mat test_images_double(data->test_images[0].rows*data->test_images[0].cols,1, CV_64FC1, Scalar::all(0));
+    
     int  n_test = data->number_of_test_data;
     int eval = 0;
     for(int i=0; i<n_test; ++i) {
-        Mat ff = feed_forward(data->test_images[i]);
+        
+        data->test_vectors[i].convertTo(test_images_double,CV_64FC1);
+        
+        Mat ff = feed_forward(test_images_double);
         double max_val,min_val;
         Point max_loc,min_loc;
         minMaxLoc(ff,&min_val,&max_val,&min_loc,&max_loc);
@@ -168,9 +179,10 @@ int NN::evaluate(DataPreparation* data) {
     return eval;
 }
 
-Mat NN::feed_forward(Mat test_images) {
+Mat NN::feed_forward(Mat test_images) {    
     Mat a = test_images.clone();
     for(int i=0; i<length_of_layers-1; ++i) {
+
         Mat z = (weights[i] * a) + biases[i];
         a.deallocate();
         a = z.clone();

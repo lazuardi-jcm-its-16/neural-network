@@ -23,11 +23,11 @@ Sigmoid::Sigmoid(const Sigmoid& orig) {
 }
 
 double Sigmoid::Compute() {
-    return 1 / 1 + exp(-z);
+    return 1.0 / 1.0 + exp(-z);
 }
 
 double Sigmoid::Compute(double z) {
-    return 1 / 1 + exp(-z);
+    return 1.0 / 1.0 + exp(-z);
 }
 
 Mat Sigmoid::Compute(Mat z) {
@@ -35,21 +35,21 @@ Mat Sigmoid::Compute(Mat z) {
     uchar* zp = z.ptr();
     uchar* yp = y.ptr();
     for(int i=0; i<z.rows*z.cols; ++i) {
-        yp[i] = 1 / 1 + exp(-zp[i]);
+        yp[i] = 1.0 / 1.0 + exp(-zp[i]);
     }
     return y;
 }
 
 double Sigmoid::ComputePrime() {
-    return Compute() * (1-Compute());
+    return Compute() * (1.0-Compute());
 }
 
 double Sigmoid::ComputePrime(double z) {
-    return Compute(z) * (1-Compute(z));
+    return Compute(z) * (1.0-Compute(z));
 }
 
 Mat Sigmoid::ComputePrime(Mat z) {
-    return Compute(z) * (1-Compute(z));
+    return Compute(z).mul((1.0-Compute(z)));
 }
 
  
