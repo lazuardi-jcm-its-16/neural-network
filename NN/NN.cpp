@@ -67,11 +67,40 @@ void NN::sgd(DataPreparation *data, int epochs, int mini_batch_size, double lear
             update_mini_batch(mini_batch_train,mini_batch_train_label, mini_batch_size, learning_rate);
         }
         
-        //evaluate
-        int n_eval = evaluate(data);
-        cout << "Epoch " << i << ": " << n_eval << "/" << n_test << endl;
+        //int n_eval = evaluate(data);
+        //cout << "Epoch " << i << ": " << n_eval << "/" << n_test << endl;
+        cout << "Epoch " << i << endl;
     }
     
+    writeMatToFile(weights[0],"weights_0.txt");
+    writeMatToFile(weights[1],"weights_1.txt");
+    writeMatToFile(biases[0],"biases_0.txt");
+    writeMatToFile(biases[1],"biases_1.txt");
+    
+    //evaluate
+    int n_eval = evaluate(data);
+    cout << "Eval: " << n_eval << "/" << n_test << endl;
+}
+
+void NN::writeMatToFile(cv::Mat& m, const char* filename)
+{
+    std::ofstream fout(filename);
+
+    if(!fout)
+    {
+        cout<<"File Not Opened"<<endl;  return;
+    }
+
+    for(int i=0; i<m.rows; i++)
+    {
+        for(int j=0; j<m.cols; j++)
+        {
+            fout<<m.at<double>(i,j)<<"\t";
+        }
+        fout<<endl;
+    }
+
+    fout.close();
 }
 
 void NN::update_mini_batch(Mat * mini_batch_train, Mat * mini_batch_train_label, int mini_batch_size, double learning_rate) {

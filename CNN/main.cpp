@@ -8,11 +8,10 @@
  * File:   main.cpp
  * Author: rif
  *
- * Created on February 24, 2017, 3:38 PM
+ * Created on February 27, 2017, 5:05 PM
  */
 
-#include <cstdlib>
-#include "CNN.h"
+#include <iostream>
 
 using namespace std;
 
@@ -20,7 +19,7 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    CNN cnn;
-    return 0;
+    
+    return -1;
 }
 

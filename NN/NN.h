@@ -16,6 +16,7 @@
 
 #include <X11/Xlib.h>
 #include <new>
+#include <fstream>
 #include <opencv2/core.hpp>
 
 #include "DataPreparation.h"
@@ -45,6 +46,7 @@ public:
         Mat * nabla_biases;
         Mat * nabla_weights;
     } delta_nabla;
+    void writeMatToFile(cv::Mat& m, const char* filename);
 private:
     
 };
