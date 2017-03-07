@@ -101,11 +101,11 @@ DataPreparation::DataPreparation() {
         convert << j;
             
         
-    }*/
+    }
     
     cout << test_labels[0] << endl;
     imshow("tes", test_images[0]);
-    waitKey(1);
+    waitKey(1);*/
     
 }
 
