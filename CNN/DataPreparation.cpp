@@ -26,8 +26,8 @@ DataPreparation::DataPreparation() {
         train_images = new Mat[number_of_train_data];
         int idx = 16;
         for(int i=0; i<number_of_train_data; i++) {
-            Mat temp_vector(rows*columns,1, CV_8UC1, Scalar::all(0));
-            Mat temp_images(rows,columns, CV_8UC1, Scalar::all(0));
+            Mat temp_vector(rows*columns,1, CV_8U, Scalar::all(0));
+            Mat temp_images(rows,columns, CV_8U, Scalar::all(0));
             uchar* vec = temp_vector.ptr();
             uchar* img = temp_images.ptr();
             for(int j=0; j<(rows*columns); j++) {
@@ -36,7 +36,7 @@ DataPreparation::DataPreparation() {
                 img[j] = a;
             }
             train_vectors[i] = temp_vector.clone();
-            train_images[i] = temp_images.clone();
+            train_images[i] = temp_images.clone();            
         }
     }
     
@@ -48,7 +48,7 @@ DataPreparation::DataPreparation() {
         train_labels = new Mat[number_of_train_data];
         int idx = 8;
         for(int i=0; i<number_of_train_data; i++) {
-            Mat temp(10,1, CV_8UC1, Scalar::all(0));
+            Mat temp(10,1, CV_8U, Scalar::all(0));
             uchar* p = temp.ptr();
             p[decode_to_int32(buffer_train_images_labels,idx++)] = 1;
             train_labels[i] = temp.clone();
@@ -67,8 +67,8 @@ DataPreparation::DataPreparation() {
         test_images = new Mat[number_of_test_data];
         int idx = 16;
         for(int i=0; i<number_of_test_data; i++) {
-            Mat temp_vector(rows*columns,1, CV_8UC1, Scalar::all(0));
-            Mat temp_images(rows,columns, CV_8UC1, Scalar::all(0));
+            Mat temp_vector(rows*columns,1, CV_8U, Scalar::all(0));
+            Mat temp_images(rows,columns, CV_8U, Scalar::all(0));
             uchar* vec = temp_vector.ptr();
             uchar* img = temp_images.ptr();
             for(int j=0; j<(rows*columns); j++) {
@@ -88,7 +88,7 @@ DataPreparation::DataPreparation() {
         test_labels = new Mat[number_of_test_data];
         int idx = 8;
         for(int i=0; i<number_of_test_data; i++) {
-            Mat temp(1,1, CV_8UC1, Scalar::all(0));
+            Mat temp(1,1, CV_8U, Scalar::all(0));
             uchar* p = temp.ptr();
             p[0] = decode_to_int32(buffer_test_images_labels,idx++);
             test_labels[i] = temp.clone();

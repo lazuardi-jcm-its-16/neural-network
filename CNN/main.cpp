@@ -14,7 +14,7 @@
 #include <iostream>
 #include <opencv2/core.hpp>
 
-#include "cnn.h"
+#include "CNN.h"
 
 using namespace std;
 using namespace cv;
@@ -26,11 +26,28 @@ int main(int argc, char** argv) {
     DataPreparation data;
     
     Size size_input(28,28);
-    Size size_local_field(5,5);
+    Size size_convolution(5,5);
+    Size size_pooling(2,2);
+    Size size_output(1,10);
     int number_of_feature_maps = 20;
     
-    cnn conv(size_input,size_local_field,number_of_feature_maps);
-    conv.train_data(&data);
+    CNN cnn(size_input,size_convolution,size_pooling,size_output,number_of_feature_maps);
+    cnn.train_data(&data,30);
+    
+    /*
+    Mat tes(10,10,CV_32FC1);
+    randn(tes,0,1);
+    
+    Size size_of_pool(2,2);
+    Point point(1,0);
+    Rect rect(point,size_of_pool);
+    Mat local_field = tes(rect);
+    
+    cout << tes << endl;
+    cout << endl << endl;
+    cout << local_field << endl;
+    cout << endl << endl;
+    cout << sum(tes).val[0] << endl;*/
     return -1;
 }
 

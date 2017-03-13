@@ -35,8 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/CNN.o \
 	${OBJECTDIR}/DataPreparation.o \
-	${OBJECTDIR}/cnn.o \
+	${OBJECTDIR}/Relu.o \
+	${OBJECTDIR}/Sigmoid.o \
 	${OBJECTDIR}/main.o
 
 
@@ -64,15 +66,25 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cnn: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cnn ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/CNN.o: CNN.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CNN.o CNN.cpp
+
 ${OBJECTDIR}/DataPreparation.o: DataPreparation.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataPreparation.o DataPreparation.cpp
 
-${OBJECTDIR}/cnn.o: cnn.cpp
+${OBJECTDIR}/Relu.o: Relu.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cnn.o cnn.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Relu.o Relu.cpp
+
+${OBJECTDIR}/Sigmoid.o: Sigmoid.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Sigmoid.o Sigmoid.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

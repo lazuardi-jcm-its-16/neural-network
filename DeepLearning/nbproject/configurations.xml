@@ -4,10 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>CNN.h</itemPath>
-      <itemPath>DataPreparation.h</itemPath>
-      <itemPath>Relu.h</itemPath>
-      <itemPath>Sigmoid.h</itemPath>
+      <itemPath>DNN.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -16,10 +13,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>CNN.cpp</itemPath>
-      <itemPath>DataPreparation.cpp</itemPath>
-      <itemPath>Relu.cpp</itemPath>
-      <itemPath>Sigmoid.cpp</itemPath>
+      <itemPath>DNN.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -55,27 +49,16 @@
           </linkerAddLib>
           <linkerLibItems>
             <linkerLibLibItem>opencv_core</linkerLibLibItem>
+            <linkerLibLibItem>opencv_dnn</linkerLibLibItem>
             <linkerLibLibItem>opencv_highgui</linkerLibLibItem>
             <linkerLibLibItem>opencv_imgcodecs</linkerLibLibItem>
             <linkerLibLibItem>opencv_imgproc</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="CNN.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DNN.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="CNN.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DataPreparation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Relu.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Relu.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Sigmoid.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Sigmoid.h" ex="false" tool="3" flavor2="0">
+      <item path="DNN.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -100,21 +83,9 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="CNN.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DNN.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="CNN.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DataPreparation.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Relu.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Relu.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Sigmoid.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Sigmoid.h" ex="false" tool="3" flavor2="0">
+      <item path="DNN.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
