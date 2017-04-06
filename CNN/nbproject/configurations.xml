@@ -4,10 +4,19 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>ActRelu.h</itemPath>
+      <itemPath>ActSigmoid.h</itemPath>
+      <itemPath>Activation.h</itemPath>
       <itemPath>CNN.h</itemPath>
+      <itemPath>CNN2.h</itemPath>
       <itemPath>DataPreparation.h</itemPath>
-      <itemPath>Relu.h</itemPath>
-      <itemPath>Sigmoid.h</itemPath>
+      <itemPath>Layer.h</itemPath>
+      <itemPath>LayerConvolution.h</itemPath>
+      <itemPath>LayerFC.h</itemPath>
+      <itemPath>LayerPool.h</itemPath>
+      <itemPath>PoolAverage.h</itemPath>
+      <itemPath>PoolMax.h</itemPath>
+      <itemPath>Pooling.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -16,10 +25,17 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>ActRelu.cpp</itemPath>
+      <itemPath>ActSigmoid.cpp</itemPath>
+      <itemPath>Activation.cpp</itemPath>
       <itemPath>CNN.cpp</itemPath>
+      <itemPath>CNN2.cpp</itemPath>
       <itemPath>DataPreparation.cpp</itemPath>
-      <itemPath>Relu.cpp</itemPath>
-      <itemPath>Sigmoid.cpp</itemPath>
+      <itemPath>LayerConvolution.cpp</itemPath>
+      <itemPath>LayerFC.cpp</itemPath>
+      <itemPath>LayerPool.cpp</itemPath>
+      <itemPath>PoolAverage.cpp</itemPath>
+      <itemPath>PoolMax.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -61,21 +77,53 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="ActRelu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ActRelu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ActSigmoid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ActSigmoid.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Activation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Activation.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CNN.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CNN.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CNN2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CNN2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataPreparation.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Relu.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Layer.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Relu.h" ex="false" tool="3" flavor2="0">
+      <item path="LayerConvolution.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sigmoid.cpp" ex="false" tool="1" flavor2="0">
+      <item path="LayerConvolution.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sigmoid.h" ex="false" tool="3" flavor2="0">
+      <item path="LayerFC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LayerFC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LayerPool.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LayerPool.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PoolAverage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PoolAverage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PoolMax.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PoolMax.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Pooling.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -100,21 +148,53 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="ActRelu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ActRelu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ActSigmoid.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ActSigmoid.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Activation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Activation.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CNN.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CNN.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CNN2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CNN2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataPreparation.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Relu.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Layer.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Relu.h" ex="false" tool="3" flavor2="0">
+      <item path="LayerConvolution.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sigmoid.cpp" ex="false" tool="1" flavor2="0">
+      <item path="LayerConvolution.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sigmoid.h" ex="false" tool="3" flavor2="0">
+      <item path="LayerFC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LayerFC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LayerPool.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LayerPool.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PoolAverage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PoolAverage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PoolMax.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PoolMax.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Pooling.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

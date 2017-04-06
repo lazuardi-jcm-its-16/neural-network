@@ -9,11 +9,14 @@
         <group>
             <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/CNN.h</file>
             <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/main.cpp</file>
+            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/LayerPool.h</file>
+            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/LayerFC.h</file>
             <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/CNN.cpp</file>
-            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/Sigmoid.h</file>
-            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/Relu.h</file>
-            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/Relu.cpp</file>
-            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/Sigmoid.cpp</file>
+            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/Layer.h</file>
+            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/LayerFC.cpp</file>
+            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/LayerConvolution.h</file>
+            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/LayerPool.cpp</file>
+            <file>file:/home/rif/Documents/infoglobal/git/neural-network/CNN/LayerConvolution.cpp</file>
         </group>
     </open-files>
 </project-private>

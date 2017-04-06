@@ -35,10 +35,17 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/ActRelu.o \
+	${OBJECTDIR}/ActSigmoid.o \
+	${OBJECTDIR}/Activation.o \
 	${OBJECTDIR}/CNN.o \
+	${OBJECTDIR}/CNN2.o \
 	${OBJECTDIR}/DataPreparation.o \
-	${OBJECTDIR}/Relu.o \
-	${OBJECTDIR}/Sigmoid.o \
+	${OBJECTDIR}/LayerConvolution.o \
+	${OBJECTDIR}/LayerFC.o \
+	${OBJECTDIR}/LayerPool.o \
+	${OBJECTDIR}/PoolAverage.o \
+	${OBJECTDIR}/PoolMax.o \
 	${OBJECTDIR}/main.o
 
 
@@ -66,25 +73,60 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cnn: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cnn ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/ActRelu.o: ActRelu.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ActRelu.o ActRelu.cpp
+
+${OBJECTDIR}/ActSigmoid.o: ActSigmoid.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ActSigmoid.o ActSigmoid.cpp
+
+${OBJECTDIR}/Activation.o: Activation.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Activation.o Activation.cpp
+
 ${OBJECTDIR}/CNN.o: CNN.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CNN.o CNN.cpp
+
+${OBJECTDIR}/CNN2.o: CNN2.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CNN2.o CNN2.cpp
 
 ${OBJECTDIR}/DataPreparation.o: DataPreparation.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataPreparation.o DataPreparation.cpp
 
-${OBJECTDIR}/Relu.o: Relu.cpp
+${OBJECTDIR}/LayerConvolution.o: LayerConvolution.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Relu.o Relu.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LayerConvolution.o LayerConvolution.cpp
 
-${OBJECTDIR}/Sigmoid.o: Sigmoid.cpp
+${OBJECTDIR}/LayerFC.o: LayerFC.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Sigmoid.o Sigmoid.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LayerFC.o LayerFC.cpp
+
+${OBJECTDIR}/LayerPool.o: LayerPool.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LayerPool.o LayerPool.cpp
+
+${OBJECTDIR}/PoolAverage.o: PoolAverage.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PoolAverage.o PoolAverage.cpp
+
+${OBJECTDIR}/PoolMax.o: PoolMax.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv -I/usr/local/include/opencv2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PoolMax.o PoolMax.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
