@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   Layer.h
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  *
  * Created on March 24, 2017, 1:48 PM
  */
@@ -32,18 +32,29 @@ public:
     //layer_type type;
     Mat weights;
     Mat biases;
-    Mat x;
-    Mat z;
-    Mat a;
+    Mat weights_update;
+    Mat biases_update;
+    Mat x;                  //input
+    Mat z;                  //output
+    Mat a;                  //activated
+    Mat e;                  //error
+    Mat delta;              //delta
+    Mat od;                 //output delta
     Activation* activation;
     layer_type type;
     
+    virtual void intialization(Size input_size, int input_type, Size output_size, int output_type) = 0;
+    virtual void set_weights(Mat weights) = 0;
+    virtual void set_biases(Mat biases) = 0;
     virtual void feed_forward(Mat x) = 0;
-    virtual void intialization() = 0;
+    virtual void back_pass(Mat y) = 0;
+    virtual void apply_gradient(double alpha) = 0;
 private:
     
     virtual void compute_z() = 0;
     virtual void compute_a() = 0;
+    virtual void compute_delta() = 0;
+    virtual void compute_gradient() = 0;
 };
 
 #endif /* LAYER_H */

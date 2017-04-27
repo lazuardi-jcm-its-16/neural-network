@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   Pooling.h
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  *
  * Created on April 4, 2017, 3:24 PM
  */
@@ -22,11 +22,8 @@ using namespace cv;
 
 class Pooling {
 public:
-    virtual Mat down_sampling(Mat x) = 0;
-    virtual Mat up_sampling(Mat y) = 0;
-    
-    Size pool_size;
-    int stride;
+    virtual Mat down_sampling(Mat x,Size pool_size,int stride) = 0;
+    virtual Mat up_sampling(Mat y,Size pool_size,int stride) = 0;
 private:
     
 };

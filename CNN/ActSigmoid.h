@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   ActSigmoid.h
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  *
  * Created on February 27, 2017, 5:07 PM
  */

@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   DataPreparation.cpp
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  * 
  * Created on March 1, 2017, 11:29 AM
  */
@@ -59,7 +59,7 @@ DataPreparation::DataPreparation() {
     if(decode_to_int32(buffer_test_images,0,3) == 2051) {
         //int number_of_items = decode_to_int32(buffer_test_images,4,7);
         //number_of_test_data = 10000;
-        number_of_test_data = 10;
+        number_of_test_data = 250;
         int rows = decode_to_int32(buffer_test_images,8,11);
         int columns = decode_to_int32(buffer_test_images,12,15);
         
@@ -84,7 +84,7 @@ DataPreparation::DataPreparation() {
     char * buffer_test_images_labels = load_file("t10k-labels.idx1-ubyte");
     if(decode_to_int32(buffer_test_images_labels,0,3) == 2049) {
         //number_of_test_data = 10000;
-        number_of_test_data = 10;
+        number_of_test_data = 250;
         test_labels = new Mat[number_of_test_data];
         int idx = 8;
         for(int i=0; i<number_of_test_data; i++) {

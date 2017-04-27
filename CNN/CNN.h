@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   CNN.h
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  *
  * Created on April 6, 2017, 4:12 PM
  */
@@ -33,12 +33,17 @@ public:
     void set_data(DataPreparation* data);
     void push_layer(Layer* layer);
     void initialization();
-    
     void train();
+    
 private:
     DataPreparation* data;
     vector<Layer*> layers;
     int number_of_layers;
+    double alpha;
+    
+    void feed_forward();
+    void back_pass();
+    void apply_grads();
 };
 
 #endif /* CNN_H */

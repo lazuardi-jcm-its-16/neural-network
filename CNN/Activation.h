@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   Activation.h
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  *
  * Created on March 29, 2017, 10:12 AM
  */
@@ -24,7 +24,7 @@ using namespace cv;
 class Activation {
 public:
     virtual Mat compute(Mat z) = 0;
-    Mat compute_prime(Mat z);
+    Mat compute_prime(Mat a);
 };
 
 #endif /* ACTIVATION_H */

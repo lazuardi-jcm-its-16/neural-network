@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   LayerFC.h
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  *
  * Created on March 24, 2017, 2:10 PM
  */
@@ -19,23 +19,29 @@
 
 class LayerFC : public Layer {
 public:
-    LayerFC(Activation* act);
+    LayerFC(int neuron_size, Activation* act);
     LayerFC(const LayerFC& orig);
     virtual ~LayerFC();
     
-    virtual void feed_forward(Mat x);
-    virtual void intialization();
-    void intialization(int number_of_neuron_input, int number_of_neuron_output);
-    
-    Mat x_as_vector;
-private:
     int number_of_neuron_input;
     int number_of_neuron_output;
+    Mat x_as_vector;
     
-    Mat tranform_to_vector(Mat x);
+    virtual void intialization(Size input_size, int input_type, Size output_size, int output_type);
+    virtual void set_weights(Mat weights);
+    virtual void set_biases(Mat biases);
+    virtual void feed_forward(Mat x);
+    virtual void back_pass(Mat y);
+    virtual void apply_gradient(double alpha);
     
+    Mat transform_to_vector(Mat x);
+    Mat transform_to_image();
+    Mat transform_to_image(int row, int col, int channel, Mat x);
+private:
     virtual void compute_z();
     virtual void compute_a();
+    virtual void compute_delta();
+    virtual void compute_gradient();
 };
 
 #endif /* LAYERFC_H */

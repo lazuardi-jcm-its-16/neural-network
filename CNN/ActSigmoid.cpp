@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   ActSigmoid.cpp
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  * 
  * Created on February 27, 2017, 5:07 PM
  */
@@ -25,17 +25,17 @@ ActSigmoid::~ActSigmoid() {
 
 Mat ActSigmoid::compute(Mat z) {
     vector<Mat> a_channels;
-    Mat a(z.rows, z.cols, CV_32FC(z.channels()));
+    Mat a(z.rows, z.cols, CV_64FC(z.channels()));
     
     for(int i=0; i<z.channels(); i++) {
-        Mat o(z.rows,z.cols,CV_32F);
+        Mat o(z.rows,z.cols,CV_64F);
         
-        Mat feature(z.rows,z.cols,CV_32F);
+        Mat feature(z.rows,z.cols,CV_64F);
         extractChannel(z,feature,i);
         
         for(int x=0; x<feature.rows; x++) {
             for(int y=0; y<feature.cols; y++) {
-                o.at<float>(y,x) = 1.0 / 1.0 + exp(-feature.at<float>(y,x));
+                o.at<double>(x,y) = 1.0 / (1.0 + exp(-feature.at<double>(x,y)));
             }
         }
         a_channels.push_back(o);

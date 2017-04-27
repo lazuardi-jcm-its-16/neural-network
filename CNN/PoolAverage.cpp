@@ -1,20 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) INFOGLOBAL TEKNOLOGI SEMESTA, PT - All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
 
 /* 
  * File:   PoolAverage.cpp
- * Author: rif
+ * Author: RIF <arif.lazuardi@infoglobal.co.id>
  * 
  * Created on April 4, 2017, 2:12 PM
  */
 
 #include "PoolAverage.h"
 
-PoolAverage::PoolAverage(int stride) : Pooling() {
-    this->stride = stride;
+PoolAverage::PoolAverage() : Pooling() {
 }
 
 PoolAverage::PoolAverage(const PoolAverage& orig) {
@@ -23,13 +22,57 @@ PoolAverage::PoolAverage(const PoolAverage& orig) {
 PoolAverage::~PoolAverage() {
 }
 
-Mat PoolAverage::down_sampling(Mat x) {
-    
-    return x;
+Mat PoolAverage::down_sampling(Mat x,Size pool_size,int stride) {
+    double min_val,max_val;
+    Point min_loc,max_loc;
+    vector<Mat> z_channels;
+   
+    Mat z(x.rows/pool_size.width, x.cols/pool_size.height, CV_64FC(x.channels()));
+    for(int i=0; i<x.channels(); i++) {
+        Mat o(z.rows,z.cols,CV_64F);  
+        
+        Mat feature(x.rows,x.cols,CV_64F);
+        extractChannel(x,feature,i);
+        
+        for(int x=0; x<z.rows; x++) {
+            for(int y=0; y<z.cols; y++) {
+                Point point(y*pool_size.width,x*pool_size.height);
+                Rect rect(point, pool_size);
+                Mat pool_field = feature(rect);
+
+                o.at<double>(x,y) = sum(pool_field)[0] / pow(pool_size.height,2);
+            }
+        }
+        
+        z_channels.push_back(o);
+    }
+    merge(z_channels,z);
+    return z;
 }
 
-Mat PoolAverage::up_sampling(Mat y) {
-    return y;
+Mat PoolAverage::up_sampling(Mat y,Size pool_size,int stride) {
+    Mat x;
+    x.zeros(y.rows*pool_size.height,y.cols*pool_size.width,y.channels());
+    vector<Mat> x_channels;
+    for(int i=0; i<y.channels(); i++) {
+        Mat o(y.rows*pool_size.height,y.cols*pool_size.width,CV_64F);  
+        
+        Mat feature(y.rows,y.cols,CV_64F);
+        extractChannel(y,feature,i);
+        
+        for(int i=0; i<y.rows; i++) {
+            int ii = i*2;
+            for(int j=0; j<y.cols; j++) {
+                int jj = j*2;
+                double val = feature.at<double>(j,i) / pow(pool_size.height,2);
+                o.at<double>(jj,ii) = o.at<double>(jj,ii+1) = o.at<double>(jj+1,ii) = o.at<double>(jj+1,ii+1) = val;
+            }
+        }
+        
+        x_channels.push_back(o);
+    }
+    merge(x_channels,x);
+    return x;
 }
 
 

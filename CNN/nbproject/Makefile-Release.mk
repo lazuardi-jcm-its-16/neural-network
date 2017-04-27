@@ -39,7 +39,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/ActSigmoid.o \
 	${OBJECTDIR}/Activation.o \
 	${OBJECTDIR}/CNN.o \
-	${OBJECTDIR}/CNN2.o \
 	${OBJECTDIR}/DataPreparation.o \
 	${OBJECTDIR}/LayerConvolution.o \
 	${OBJECTDIR}/LayerFC.o \
@@ -92,11 +91,6 @@ ${OBJECTDIR}/CNN.o: CNN.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CNN.o CNN.cpp
-
-${OBJECTDIR}/CNN2.o: CNN2.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CNN2.o CNN2.cpp
 
 ${OBJECTDIR}/DataPreparation.o: DataPreparation.cpp
 	${MKDIR} -p ${OBJECTDIR}

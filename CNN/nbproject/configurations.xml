@@ -8,7 +8,6 @@
       <itemPath>ActSigmoid.h</itemPath>
       <itemPath>Activation.h</itemPath>
       <itemPath>CNN.h</itemPath>
-      <itemPath>CNN2.h</itemPath>
       <itemPath>DataPreparation.h</itemPath>
       <itemPath>Layer.h</itemPath>
       <itemPath>LayerConvolution.h</itemPath>
@@ -29,7 +28,6 @@
       <itemPath>ActSigmoid.cpp</itemPath>
       <itemPath>Activation.cpp</itemPath>
       <itemPath>CNN.cpp</itemPath>
-      <itemPath>CNN2.cpp</itemPath>
       <itemPath>DataPreparation.cpp</itemPath>
       <itemPath>LayerConvolution.cpp</itemPath>
       <itemPath>LayerFC.cpp</itemPath>
@@ -92,10 +90,6 @@
       <item path="CNN.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CNN.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CNN2.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="CNN2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -163,10 +157,6 @@
       <item path="CNN.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CNN.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="CNN2.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="CNN2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
       </item>
