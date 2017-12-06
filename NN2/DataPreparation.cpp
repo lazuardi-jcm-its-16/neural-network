@@ -11,101 +11,52 @@
  * Created on March 1, 2017, 11:29 AM
  */
 
+#include <string.h>
 #include "DataPreparation.h"
+#include "CSVIterator.h"
+
+std::istream& operator>>(std::istream& str, CSVRow& data)
+{
+    data.readNextRow(str);
+    return str;
+} 
+
 
 DataPreparation::DataPreparation() {
-    char * buffer_train_images = load_file("train-images.idx3-ubyte");
-    if(decode_to_int32(buffer_train_images,0,3) == 2051) {
-        //int number_of_items = decode_to_int32(buffer_train_images,4,7);
-        //number_of_train_data = 60000;
-        number_of_train_data = 250;
-        int rows = decode_to_int32(buffer_train_images,8,11);
-        int columns = decode_to_int32(buffer_train_images,12,15);
+    std::ifstream file_train("fitur_train.csv");
+    number_of_train_data = 12;
+    CSVRow row_train;
+    while(file_train >> row_train) {
+        Mat temp_vector(16,1, CV_64FC1, Scalar::all(0));
+        for(int j=0; j<16; j++) {
+            temp_vector.at<double>(j,0) = atof(row_train[j].c_str());
+        }
         
-        train_vectors = new Mat[number_of_train_data];
-        train_images = new Mat[number_of_train_data];
-        int idx = 16;
-        for(int i=0; i<number_of_train_data; i++) {
-            Mat temp_vector(rows*columns,1, CV_8UC1, Scalar::all(0));
-            Mat temp_images(rows,columns, CV_8UC1, Scalar::all(0));
-            uchar* vec = temp_vector.ptr();
-            uchar* img = temp_images.ptr();
-            for(int j=0; j<(rows*columns); j++) {
-                int a = decode_to_int32(buffer_train_images,idx++);
-                vec[j] = a;
-                img[j] = a;
-            }
-            train_vectors[i] = temp_vector.clone();
-            train_images[i] = temp_images.clone();
-        }
-    }
-    
-            
-    char * buffer_train_images_labels = load_file("train-labels.idx1-ubyte");
-    if(decode_to_int32(buffer_train_images_labels,0,3) == 2049) {
-        //number_of_train_data = 60000;
-        number_of_train_data = 250;
-        train_labels = new Mat[number_of_train_data];
-        int idx = 8;
-        for(int i=0; i<number_of_train_data; i++) {
-            Mat temp(10,1, CV_8UC1, Scalar::all(0));
-            uchar* p = temp.ptr();
-            p[decode_to_int32(buffer_train_images_labels,idx++)] = 1;
-            train_labels[i] = temp.clone();
-        }
-    }
-    
-    char * buffer_test_images = load_file("t10k-images.idx3-ubyte");
-    if(decode_to_int32(buffer_test_images,0,3) == 2051) {
-        //int number_of_items = decode_to_int32(buffer_test_images,4,7);
-        //number_of_test_data = 10000;
-        number_of_test_data = 10;
-        int rows = decode_to_int32(buffer_test_images,8,11);
-        int columns = decode_to_int32(buffer_test_images,12,15);
+        Mat temp_label(6,1, CV_8UC1, Scalar::all(0));
+        int idx = atoi(row_train[16].c_str());
+        temp_label.at<uchar>((idx-1),0) = 1;
         
-        test_vectors = new Mat[number_of_test_data];
-        test_images = new Mat[number_of_test_data];
-        int idx = 16;
-        for(int i=0; i<number_of_test_data; i++) {
-            Mat temp_vector(rows*columns,1, CV_8UC1, Scalar::all(0));
-            Mat temp_images(rows,columns, CV_8UC1, Scalar::all(0));
-            uchar* vec = temp_vector.ptr();
-            uchar* img = temp_images.ptr();
-            for(int j=0; j<(rows*columns); j++) {
-                int a = decode_to_int32(buffer_test_images,idx++);
-                vec[j] = a;
-                img[j] = a;
-            }
-            test_vectors[i] = temp_vector.clone();
-            test_images[i] = temp_images.clone();
-        }
+        train_vectors.push_back(temp_vector);
+        train_labels.push_back(temp_label);
     }
     
-    char * buffer_test_images_labels = load_file("t10k-labels.idx1-ubyte");
-    if(decode_to_int32(buffer_test_images_labels,0,3) == 2049) {
-        //number_of_test_data = 10000;
-        number_of_test_data = 10;
-        test_labels = new Mat[number_of_test_data];
-        int idx = 8;
-        for(int i=0; i<number_of_test_data; i++) {
-            Mat temp(1,1, CV_8UC1, Scalar::all(0));
-            uchar* p = temp.ptr();
-            p[0] = decode_to_int32(buffer_test_images_labels,idx++);
-            test_labels[i] = temp.clone();
+    std::ifstream file_test("fitur_test.csv");
+    number_of_test_data = 9;
+    CSVRow row_test;
+    while(file_test >> row_test) {
+        Mat temp_vector(16,1, CV_64FC1, Scalar::all(0));
+        for(int j=0; j<16; j++) {
+            temp_vector.at<double>(j,0) = atof(row_test[j].c_str());
         }
-    }
-    /*
-    for(int i=0; i<250; i++) {  
-        int j = i;
-        ostringstream convert;
-        convert << j;
-            
         
-    }*/
+        Mat temp_label(6,1, CV_8UC1, Scalar::all(0));
+        int idx = atoi(row_test[16].c_str());
+        temp_label.at<uchar>((idx-1),0) = 1;
+        
+        test_vectors.push_back(temp_vector);
+        test_labels.push_back(temp_label);
+    }
     
-    cout << test_labels[0] << endl;
-    imshow("tes", test_images[0]);
-    waitKey(1);
     
 }
 

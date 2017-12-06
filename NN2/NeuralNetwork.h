@@ -14,10 +14,12 @@
 #ifndef NEURALNETWORK_H
 #define NEURALNETWORK_H
 
+#include <iostream>
 #include <opencv2/core.hpp>
 
 #include "DataPreparation.h"
 using namespace cv;
+using namespace std;
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,13 +34,13 @@ extern "C" {
             int *layers;
             int length_of_layers;
             
-            Mat *biases;
-            Mat *weights;
-            Mat *nabla_biases;
-            Mat *nabla_weights;
+            vector<Mat> biases;
+            vector<Mat> weights;
+            vector<Mat> nabla_biases;
+            vector<Mat> nabla_weights;
+            vector<Mat> activations;
+            vector<Mat> zs;
             
-            Mat *activations;
-            Mat *zs;
     };
 
 

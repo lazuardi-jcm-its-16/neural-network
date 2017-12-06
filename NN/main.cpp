@@ -77,10 +77,19 @@ int main(int argc, char** argv) {
     //cout << data.test_vectors[0] << endl;
     cout << data.test_labels[0] << endl;*/
     
+    /*
+    DataPreparation data;
+    int layers[3] = {16,30,6};
+    NN nn(&layers[0],sizeof(layers)/sizeof(int));
+    nn.sgd(&data,30,10,0.1);
+    data.release_all();*/
+    
+    
     DataPreparation data;
     int layers[3] = {784,30,10};
     NN nn(&layers[0],sizeof(layers)/sizeof(int));
     nn.sgd(&data,30,10,3.0);
+    data.release_all();
     
     //cout << nn.length_of_layers << endl;
     //cout << nn.layers[0] << " " << nn.layers[1] << " " << nn.layers[2] << endl;

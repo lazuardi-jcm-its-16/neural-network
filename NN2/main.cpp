@@ -12,7 +12,6 @@
  */
 
 #include <iostream>
-
 #include "NN2.h"
 
 using namespace std;
@@ -22,9 +21,9 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     DataPreparation data;
-    /*int layers[3] = {784,30,10};
+    int layers[3] = {16,10,6};
     NN2 nn(&data,layers,sizeof(layers)/sizeof(int));
-    nn.sgd(20,10,10.0);*/
+    nn.sgd(1,2,0.01);
     
     return -1;
 }

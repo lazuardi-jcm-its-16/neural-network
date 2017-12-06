@@ -12,8 +12,71 @@
  */
 
 #include "DataPreparation.h"
+#include "CSVIterator.h"
+
+std::istream& operator>>(std::istream& str, CSVRow& data)
+{
+    data.readNextRow(str);
+    return str;
+} 
 
 DataPreparation::DataPreparation() {
+    /*
+    number_of_train_data = 18;
+    train_vectors = new Mat[number_of_train_data];
+    train_images = new Mat[number_of_train_data];
+    train_labels = new Mat[number_of_train_data];
+    
+    std::string::size_type sz;
+    std::ifstream file_train("fitur_train.csv");
+    
+    int i = 0;
+    CSVRow row_train;
+    while(file_train >> row_train) {
+        Mat temp_vector(16,1, CV_64FC1, Scalar::all(0));
+        for(int j=0; j<16; j++) {
+            temp_vector.at<double>(j,0) = std::stod(row_train[j],&sz);
+        }
+        
+        Mat temp_label(6,1, CV_8UC1, Scalar::all(0));
+        int idx = std::stoi(row_train[16],&sz);
+        temp_label.at<uchar>((idx-1),0) = 1;
+        
+        train_vectors[i] = temp_vector.clone();
+        train_images[i] = temp_vector.reshape(1,4);
+        train_labels[i] = temp_label.clone();
+        i++;
+    }
+    
+    
+    
+    number_of_test_data = 9;
+    test_vectors = new Mat[number_of_test_data];
+    test_images = new Mat[number_of_test_data];
+    test_labels = new Mat[number_of_test_data];
+    
+    std::ifstream file_test("fitur_test.csv");
+    i = 0;
+    CSVRow row_test;
+    while(file_test >> row_test) {
+        Mat temp_vector(16,1, CV_64FC1, Scalar::all(0));
+        for(int j=0; j<16; j++) {
+            temp_vector.at<double>(j,0) = std::stod(row_test[j],&sz);
+        }
+        
+        Mat temp_label(6,1, CV_8UC1, Scalar::all(0));
+        int idx = std::stoi(row_test[16],&sz);
+        temp_label.at<uchar>((idx-1),0) = 1;
+        
+        test_vectors[i] = temp_vector.clone();
+        test_images[i] = temp_vector.reshape(1,4);
+        test_labels[i] = temp_label.clone();
+        i++;
+        
+    }*/
+    
+    
+    
     char * buffer_train_images = load_file("train-images.idx3-ubyte");
     if(decode_to_int32(buffer_train_images,0,3) == 2051) {
         //int number_of_items = decode_to_int32(buffer_train_images,4,7);
@@ -104,7 +167,18 @@ DataPreparation::DataPreparation(const DataPreparation& orig) {
 }
 
 DataPreparation::~DataPreparation() {
+    
 }
+
+void DataPreparation::release_all() {
+    delete[] train_vectors;
+    delete[] train_images;
+    delete[] train_labels;
+    delete[] test_vectors;
+    delete[] test_images;
+    delete[] test_labels;
+}
+
 
 char * DataPreparation::load_file(char * file_name) {
     FILE * pFile;

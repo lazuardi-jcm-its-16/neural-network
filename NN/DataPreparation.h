@@ -14,6 +14,13 @@
 #ifndef DATAPREPARATION_H
 #define DATAPREPARATION_H
 
+#include <iterator>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+
 #include <cstdlib>
 #include <stdio.h>
 #include <iostream>
@@ -30,6 +37,9 @@ public:
     DataPreparation();
     DataPreparation(const DataPreparation& orig);
     virtual ~DataPreparation();
+    
+    void release_all();
+    
     Mat * train_vectors;
     Mat * train_images;
     Mat * train_labels;

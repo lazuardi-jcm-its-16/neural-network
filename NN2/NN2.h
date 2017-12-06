@@ -14,25 +14,28 @@
 #ifndef NN2_H
 #define NN2_H
 
+#include <iostream>
 #include <X11/Xlib.h>
 #include <new>
 #include <opencv2/core.hpp>
 
 #include "DataPreparation.h"
 #include "NNDefaultWeightsBiases.h"
+#include "NNLargeWeightsBiases.h"
 
 using namespace cv;
 
 class NN2 {
 public:
-    NN2(DataPreparation * data, int * layers, int length_of_layers); // CLEAR
+    NN2(DataPreparation* data, int* layers, int length_of_layers); // CLEAR
     NN2(const NN2& orig); // NOT YET TEST
     virtual ~NN2(); // NOT YET TEST
     
-    NNDefaultWeightsBiases nn;
+    NNLargeWeightsBiases nn;
     
     void sgd(int epochs, int mini_batch_size, double learning_rate); //stochastic_gradient_descent
-    void update_mini_batch(Mat * mini_batch_train, Mat * mini_batch_train_label, int mini_batch_size, double learining_rate);
+    //void update_mini_batch(Mat * mini_batch_train, Mat * mini_batch_train_label, int mini_batch_size, double learining_rate);
+    void update_mini_batch(vector<Mat> mini_batch_train, vector<Mat> mini_batch_train_label, int mini_batch_size, double learining_rate);
     void backprop(Mat train_images, Mat train_labels);
     Mat cost_derivative(Mat output_activations, Mat y_target);
     int evaluate(DataPreparation * data);

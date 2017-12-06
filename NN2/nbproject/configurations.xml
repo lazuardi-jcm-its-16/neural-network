@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>CSVIterator.h</itemPath>
       <itemPath>DataPreparation.h</itemPath>
       <itemPath>NN2.h</itemPath>
       <itemPath>NNDefaultWeightsBiases.h</itemPath>
@@ -65,6 +66,8 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="CSVIterator.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataPreparation.h" ex="false" tool="3" flavor2="0">
@@ -110,6 +113,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="CSVIterator.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataPreparation.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataPreparation.h" ex="false" tool="3" flavor2="0">

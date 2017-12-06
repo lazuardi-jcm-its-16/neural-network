@@ -69,17 +69,20 @@ void NN::sgd(DataPreparation *data, int epochs, int mini_batch_size, double lear
         
         //int n_eval = evaluate(data);
         //cout << "Epoch " << i << ": " << n_eval << "/" << n_test << endl;
-        cout << "Epoch " << i << endl;
+        //cout << "Epoch " << i << endl;
     }
     
+    std::cout << weights[1] << std::endl;
+    
+    /*
     writeMatToFile(weights[0],"weights_0.txt");
     writeMatToFile(weights[1],"weights_1.txt");
     writeMatToFile(biases[0],"biases_0.txt");
-    writeMatToFile(biases[1],"biases_1.txt");
+    writeMatToFile(biases[1],"biases_1.txt");*/
     
     //evaluate
-    int n_eval = evaluate(data);
-    cout << "Eval: " << n_eval << "/" << n_test << endl;
+    //int n_eval = evaluate(data);
+    //cout << "Eval: " << n_eval << "/" << n_test << endl;
 }
 
 void NN::writeMatToFile(cv::Mat& m, const char* filename)
@@ -185,20 +188,18 @@ Mat NN::cost_derivative(Mat output_activations, Mat y_target) {
 }
 
 int NN::evaluate(DataPreparation* data) {
-    Mat test_images_double(data->test_images[0].rows*data->test_images[0].cols,1, CV_64FC1, Scalar::all(0));
-    
     int  n_test = data->number_of_test_data;
     int eval = 0;
     for(int i=0; i<n_test; ++i) {
+        Mat ff = feed_forward(data->test_vectors[i]);
         
-        data->test_vectors[i].convertTo(test_images_double,CV_64FC1);
         
-        Mat ff = feed_forward(test_images_double);
         double max_val,min_val;
         Point max_loc,min_loc;
         minMaxLoc(ff,&min_val,&max_val,&min_loc,&max_loc);
         
         Mat label = data->test_labels[i];
+        
         uchar* p = label.ptr();
         if(max_loc.x == p[0]) {
             eval += 1;
@@ -208,7 +209,7 @@ int NN::evaluate(DataPreparation* data) {
     return eval;
 }
 
-Mat NN::feed_forward(Mat test_images) {    
+Mat NN::feed_forward(Mat test_images) {     
     Mat a = test_images.clone();
     for(int i=0; i<length_of_layers-1; ++i) {
 
